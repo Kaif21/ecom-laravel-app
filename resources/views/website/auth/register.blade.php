@@ -30,41 +30,30 @@
                             <h3>No Account? Register</h3>
                             <p>Registration takes less than a minute but gives you full control over your orders.</p>
                         </div>
-                        <form class="row" method="post">
+                        <form class="row" action="{{route('customer.register')}}" method="post">
+                            @csrf
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-fn">First Name</label>
-                                    <input class="form-control" type="text" id="reg-fn" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="reg-ln">Last Name</label>
-                                    <input class="form-control" type="text" id="reg-ln" required>
+                                    <input class="form-control" type="text" name="name" id="reg-fn" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-email">E-mail Address</label>
-                                    <input class="form-control" type="email" id="reg-email" required>
+                                    <input class="form-control" type="email" id="email" name="email" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-phone">Phone Number</label>
-                                    <input class="form-control" type="text" id="reg-phone" required>
+                                    <input class="form-control" type="text" id="reg-phone" name="mobile" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="reg-pass">Password</label>
-                                    <input class="form-control" type="password" id="reg-pass" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="reg-pass-confirm">Confirm Password</label>
-                                    <input class="form-control" type="password" id="reg-pass-confirm" required>
+                                    <input class="form-control" type="password" id="reg-pass" name="password" required>
                                 </div>
                             </div>
                             <div class="button">

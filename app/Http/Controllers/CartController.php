@@ -28,4 +28,9 @@ class CartController extends Controller
         );
         return redirect('/cart')->with('success','Added to cart successfully');
     }
+    public function remove($rowId)
+    {
+        Cart::remove($rowId);
+        return redirect('/cart')->with('message', 'Cart item info delete successfully.');
+    }
 }

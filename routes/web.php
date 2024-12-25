@@ -11,7 +11,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CustomerAuthController;
+use App\HTTP\Controllers\AdminOrderController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -61,10 +63,35 @@ Route::post('/customer/register', [CustomerAuthController::class, 'register'])->
 Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout.index');
 //checkout-payemntinfo
 Route::get('/checkout/payment-info', [CheckOutController::class, 'paymentinfo'])->name('checkout.paymentinfo');
-
-
-//POST
+//complete order
+Route::get('/checkout/complete-order', [CheckOutController::class, 'completeOrder'])->name('checkout.complete-order');
+//check oiut-newrder
+Route::post('/checkout/new-order', [CheckOutController::class, 'newOrder'])->name('checkout.new-order');
 //product
+
+
+// sslcommerce
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+//sslcommerce
+
+
+
+
+
+
 //POST
 Route::middleware([
     'auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
@@ -104,7 +131,14 @@ Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('prod
 Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 Route::get('/get-sub-category-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('get-sub-category-by-category');
 //product
-
+//order
+Route::get('/admin/all-order', [AdminOrderController::class, 'index'])->name('admin.all-order');
+Route::get('/admin/order-details/{id}', [AdminOrderController::class, 'details'])->name('admin.order-details');
+Route::get('/admin/order-edit/{id}', [AdminOrderController::class, 'edit'])->name('admin.order-edit');
+Route::get('/admin/order-delete/{id}', [AdminOrderController::class, 'delete'])->name('admin.order-delete');
+Route::get('/admin/order-invoice/{id}', [AdminOrderController::class, 'orderInvoice'])->name('admin.order-invoice');
+Route::get('/admin/download-invoice/{id}',[AdminOrderController::class,'downloadInvoice'])->name('admin.download-invoice');
+//order
 // GET
 
 
@@ -127,7 +161,11 @@ Route::post('/unit/update/{id}', [UnitController::class, 'update'])->name('unit.
 //product
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
-
+//product
+//order
+Route::post('/admin/order-update/{id}', [AdminOrderController::class, 'update'])->name('admin.order-update');
+//order
 
 });
 // admin
+

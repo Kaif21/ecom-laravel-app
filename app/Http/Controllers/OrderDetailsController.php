@@ -5,16 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\OrderDetails;
 use App\Http\Requests\StoreOrderDetailsRequest;
 use App\Http\Requests\UpdateOrderDetailsRequest;
+use Cart;
 
 class OrderDetailsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
